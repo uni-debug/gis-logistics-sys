@@ -4,7 +4,7 @@ $env:DB_HOST = '127.0.0.1'
 $env:DB_PORT = '3306'
 $env:DB_NAME = 'logistics_db'
 $env:DB_USER = 'root'
-$env:DB_PASSWORD = '20082008'
+$env:DB_PASSWORD = if ($env:DB_PASSWORD) { $env:DB_PASSWORD } else { Read-Host 'MySQL password (local dev only)' }
 $env:PHONE_ENCRYPTION_KEY = 'dev-phone-key-32-chars!'
 $env:OSRM_BASE_URL = 'http://127.0.0.1:5000'
 Set-Location $Workdir
