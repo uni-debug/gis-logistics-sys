@@ -1,0 +1,36 @@
+0 verbose cli D:\node\node.exe D:\node\node_modules\npm\bin\npm-cli.js
+1 info using npm@11.12.1
+2 info using node@v24.15.0
+3 silly config load:file:D:\node\node_modules\npm\npmrc
+4 silly config load:file:D:\xiangmu2\01wuliupeisong\.npmrc
+5 silly config load:file:C:\Users\徐天宇\.npmrc
+6 silly config load:file:C:\Users\徐天宇\.node_global\etc\npmrc
+7 verbose title npm run build
+8 verbose argv "run" "build"
+9 verbose logfile logs-max:10 dir:D:\xiangmu2\01wuliupeisong\%USERPROFILE%\.npm-cache\_logs\2026-09-27T08_51_01_303Z-
+10 verbose logfile D:\xiangmu2\01wuliupeisong\%USERPROFILE%\.npm-cache\_logs\2026-09-27T08_51_01_303Z-debug-0.log
+11 silly logfile done cleaning log files
+12 verbose stack Error: Could not read package.json: Error: ENOENT: no such file or directory, open 'D:\xiangmu2\01wuliupeisong\package.json'
+12 verbose stack     at async open (node:internal/fs/promises:640:25)
+12 verbose stack     at async readFile (node:internal/fs/promises:1287:14)
+12 verbose stack     at async read (D:\node\node_modules\npm\node_modules\@npmcli\package-json\lib\read-package.js:9:18)
+12 verbose stack     at async PackageJson.load (D:\node\node_modules\npm\node_modules\@npmcli\package-json\lib\index.js:131:31)
+12 verbose stack     at async PackageJson.normalize (D:\node\node_modules\npm\node_modules\@npmcli\package-json\lib\index.js:117:5)
+12 verbose stack     at async #run (D:\node\node_modules\npm\lib\commands\run.js:90:13)
+12 verbose stack     at async RunScript.exec (D:\node\node_modules\npm\lib\commands\run.js:44:7)
+12 verbose stack     at async Npm.exec (D:\node\node_modules\npm\lib\npm.js:193:9)
+12 verbose stack     at async module.exports (D:\node\node_modules\npm\lib\cli\entry.js:67:5)
+13 error code ENOENT
+14 error syscall open
+15 error path D:\xiangmu2\01wuliupeisong\package.json
+16 error errno -4058
+17 error enoent Could not read package.json: Error: ENOENT: no such file or directory, open 'D:\xiangmu2\01wuliupeisong\package.json'
+18 error enoent This is related to npm not being able to find a file.
+18 error enoent
+19 verbose cwd D:\xiangmu2\01wuliupeisong
+20 verbose os Windows_NT 10.0.26100
+21 verbose node v24.15.0
+22 verbose npm  v11.12.1
+23 verbose exit -4058
+24 verbose code -4058
+25 error A complete log of this run can be found in: D:\xiangmu2\01wuliupeisong\%USERPROFILE%\.npm-cache\_logs\2026-09-27T08_51_01_303Z-debug-0.log

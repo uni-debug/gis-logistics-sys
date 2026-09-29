@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0e1a" />
+    <title>GIS 物流配送</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Fira+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app"><div id="boot-probe" style="min-height:60vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:#64748b;font-family:monospace;font-size:13px;"><div>◌ 正在加载应用…</div><div id="boot-probe-msg" style="font-size:11px;color:#475569;"></div></div></div>
+    <script>
+  // 启动自检：清理早期开发会话遗留的脏鉴权状态（token/role 不一致会导致路由守卫死循环）
+  try {
+    var t = localStorage.getItem('token')
+    var r = localStorage.getItem('role')
+    if (t || r) {
+      localStorage.removeItem('token')
+      localStorage.removeItem('role')
+      localStorage.removeItem('userId')
+      console.warn('[bootstrap] 已清理旧鉴权状态，请重新登录')
+      var p1 = document.getElementById('boot-probe-msg')
+      if (p1) p1.textContent = '已清理旧登录态'
+    }
+  } catch (e) {}
+  // Vue 挂载成功后由 main.ts 移除探针；5 秒后若仍在则提示模块加载失败
+  window.__bootProbeTimer = setTimeout(function () {
+    var probe = document.getElementById('boot-probe')
+    if (probe && probe.parentNode) {
+      var msg = document.getElementById('boot-probe-msg')
+      if (msg) msg.textContent = '模块加载失败：请查看 Console / Network，或 Ctrl+Shift+R 强刷'
+    }
+  }, 6000)
+</script>
+<script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

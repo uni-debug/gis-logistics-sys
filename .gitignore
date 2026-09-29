@@ -1,0 +1,40 @@
+# deps / build
+node_modules/
+web/dist/
+web/%USERPROFILE%/
+server/target/
+web/tsconfig.tsbuildinfo
+web/tsconfig.node.tsbuildinfo
+*.class
+!server/src/**/*.class
+
+# logs
+tools/*.log
+tools/*.log.err
+*.err
+
+# local osm roadnets + OSRM native binaries (OSRM test data, 可本地重建)
+tools/osrm/
+tools/node_modules/
+
+# local helper scripts / patches
+tools/*.py
+tools/e2e_*.mjs
+tools/staffcheck*.mjs
+tools/serve-*.py
+tools/patch_*.py
+
+# temp / probe
+server/probe-src/
+server/T1.java
+server/cp.txt
+start_part1.txt
+tools/vite.log
+tools/vite.err.log
+
+# keep tooling
+!tools/run-vite.ps1
+!tools/start-backend.ps1
+!tools/run-backend.ps1
+!tools/start-all.ps1
+!tools/run-tests.ps1

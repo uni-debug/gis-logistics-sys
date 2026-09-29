@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: logistics-server
+  datasource:
+    url: jdbc:mysql://${DB_HOST:127.0.0.1}:${DB_PORT:3306}/${DB_NAME:logistics_db}?useSSL=false&serverTimezone=UTC&characterEncoding=utf8&allowPublicKeyRetrieval=true
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        default_schema: logistics_db
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    com.gis.logistics: DEBUG
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:}
+    issuer: gis-logistics
+    expire-seconds: 86400
+  osrm:
+    base-url: ${OSRM_BASE_URL:http://127.0.0.1:5000}
+    engine: ${OSRM_ENGINE:line}   # line=折线引擎(默认) / osrm=真实OSRM引擎
+    timeout-seconds: 30
+    cost-fen-per-km: ${OSRM_COST_FEN_PER_KM:200}
+    cost-fen-per-avoid-segment: ${OSRM_COST_FEN_PER_AVOID_SEGMENT:50}
+  geo:
+    srid: 4326

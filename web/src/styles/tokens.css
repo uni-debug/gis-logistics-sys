@@ -1,0 +1,336 @@
+/* ============================================================
+ * GIS 物流配送 — 全局设计令牌 (Dark Control Room)
+ * 深色分层 + 玻璃质感 + 数据密集
+ * ============================================================ */
+
+:root {
+  /* 背景分层 (白色调，柔和米白) */
+  --bg-l0: #f6f7f9;
+  --bg-l1: #ffffff;
+  --bg-l2: #f0f1f4;
+  --bg-l3: #e6e8ec;
+
+  /* 玻璃面板 (白底轻玻璃) */
+  --glass-bg: rgba(255, 255, 255, 0.86);
+  --glass-bg-2: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(15, 23, 42, 0.08);
+  --glass-border-2: rgba(15, 23, 42, 0.16);
+  --glass-blur: blur(12px);
+
+  /* 品牌色 (中性：柔和钢蓝主色，白底上更饱和一点保证对比) */
+  --primary: #4f6275;
+  --primary-dim: #38485a;
+  --accent: #6b7a8f;
+  --accent-bright: #8494a8;
+  --destructive: #d64545;
+  --success: #2f9e63;
+  --info: #3a86b8;
+  --violet: #7d6fb0;
+
+  /* 文本 (中性深灰，白底高对比) */
+  --text-hi: #1f2430;
+  --text-mid: #555c68;
+  --text-low: #8a919c;
+
+  /* 字体 */
+  --font-sans: "Inter", "Fira Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  /* 圆角 / 阴影 / 动效 */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --shadow-panel: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 0 0 1px var(--glass-border), 0 18px 48px rgba(0, 0, 0, 0.55);
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---- 基础 ---- */
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-size: 15px;
+  background:
+    radial-gradient(1200px 800px at 12% -10%, rgba(79, 98, 117, 0.08), transparent 60%),
+    radial-gradient(1000px 700px at 95% 5%, rgba(132, 148, 168, 0.06), transparent 55%),
+    var(--bg-l0);
+  color: var(--text-hi);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+/* ---- 通用类 ---- */
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-panel);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex: 0 0 8px;
+}
+
+.status-dot--live {
+  background: var(--success);
+  box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.6);
+  animation: pulse-live 1.8s var(--ease) infinite;
+}
+
+.status-dot--stale {
+  background: var(--text-low);
+  box-shadow: none;
+}
+
+@keyframes pulse-live {
+  0% {
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(22, 163, 74, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-dot--live {
+    animation: none;
+  }
+}
+
+/* ---- Element Plus 深色覆盖 ---- */
+.el-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  --el-card-bg-color: transparent;
+  --el-card-border-color: var(--glass-border);
+  box-shadow: var(--shadow-panel);
+}
+
+.el-table {
+  --el-table-bg-color: transparent;
+  --el-table-tr-bg-color: transparent;
+  --el-table-header-bg-color: var(--bg-l2);
+  --el-table-border-color: var(--glass-border);
+  --el-table-text-color: var(--text-hi);
+  --el-table-header-text-color: var(--text-mid);
+  --el-table-row-hover-bg-color: rgba(79, 98, 117, 0.08);
+  background: transparent;
+  color: var(--text-hi);
+}
+
+.el-table th.el-table__cell {
+  background: var(--bg-l2);
+}
+
+.el-tag {
+  --el-tag-bg-color: var(--glass-bg-2);
+  border: 1px solid var(--glass-border);
+  --el-tag-text-color: var(--text-mid);
+}
+
+.el-tag--success {
+  --el-tag-bg-color: rgba(47, 158, 99, 0.12);
+  --el-tag-border-color: rgba(47, 158, 99, 0.35);
+  --el-tag-text-color: #1f7a4d;
+}
+
+.el-tag--warning {
+  --el-tag-bg-color: rgba(180, 120, 20, 0.12);
+  --el-tag-border-color: rgba(180, 120, 20, 0.35);
+  --el-tag-text-color: #9a6a10;
+}
+
+.el-tag--danger {
+  --el-tag-bg-color: rgba(214, 69, 69, 0.12);
+  --el-tag-border-color: rgba(214, 69, 69, 0.35);
+  --el-tag-text-color: #b02a2a;
+}
+
+.el-tabs__item {
+  color: var(--text-mid);
+  --el-tabs-header-line-color: var(--glass-border);
+}
+
+.el-tabs__item.is-active {
+  color: var(--primary);
+}
+
+.el-button--primary {
+  --el-button-bg-color: var(--primary);
+  --el-button-border-color: var(--primary);
+}
+
+.el-button--primary:hover,
+.el-button--primary:focus {
+  --el-button-hover-bg-color: var(--accent-bright);
+  --el-button-hover-border-color: var(--accent-bright);
+}
+
+.el-message {
+  --el-message-bg-color: #ffffff;
+  --el-message-border-color: var(--glass-border-2);
+}
+
+.el-timeline-item__timestamp {
+  color: var(--text-low);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.el-timeline-item__node {
+  background: var(--bg-l1);
+  border: 2px solid var(--primary);
+}
+
+.el-empty__description p {
+  color: var(--text-mid);
+}
+
+.el-input__inner,
+.el-input {
+  --el-input-bg-color: var(--glass-bg);
+  --el-input-border-color: var(--glass-border);
+  --el-input-hover-border-color: var(--glass-border-2);
+  --el-input-focus-border-color: var(--primary);
+  --el-input-text-color: var(--text-hi);
+  --el-input-placeholder-color: var(--text-low);
+}
+
+.el-form-item__label {
+  color: var(--text-mid);
+}
+
+/* ============================================================
+ * 职业感升级：排版节奏 + 数据面精修（Linear 式克制）
+ * ============================================================ */
+body {
+  font-feature-settings: "tnum" 1, "cv02" 1, "cv03" 1, "cv04" 1;
+}
+
+/* 数字/表格统一等宽节奏，提升数据可读性 */
+.mono,
+.el-table .mono,
+.el-table__body td .mono {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* 面板层级：主面板边框更克制、次级内容靠留白而非加框 */
+.glass {
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+}
+
+/* 表格行高呼吸感 */
+el-table .cell {
+  padding: 6px 10px;
+  font-size: 14px;
+}
+
+.el-table .cell,
+.el-table th.el-table__cell,
+.el-table td.el-table__cell {
+  font-size: 14px;
+}
+
+.el-input__inner,
+.el-select,
+.el-button {
+  font-size: 14px;
+}
+
+.el-tag {
+  font-size: 13px;
+}
+
+.el-message-box__title {
+  font-size: 16px;
+}
+
+/* 焦点可见性（键盘导航） */
+a:focus-visible,
+button:focus-visible,
+.el-input__inner:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 2px;
+}
+
+/* maplibre 暗色微调 */
+.maplibregl-ctrl-group,
+.maplibregl-ctrl-scale {
+  background: var(--glass-bg-2);
+  color: var(--text-hi);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+}
+
+.maplibregl-ctrl-group button {
+  background: transparent;
+  color: var(--text-hi);
+}
+
+.maplibregl-ctrl-group button .maplibregl-ctrl-icon {
+  filter: invert(0);
+}
+
+
+/* ============================================================
+ * 动效与交互质感（克制：hover 浮起 + 焦点环 + 轻量过渡）
+ * ============================================================ */
+.glass {
+  transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease), border-color 0.22s var(--ease);
+}
+.glass:hover {
+  transform: translateY(-1px);
+  border-color: var(--glass-border-2);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
+}
+
+button,
+[role="tab"],
+.el-button {
+  transition: transform 0.14s var(--ease), box-shadow 0.14s var(--ease), background 0.14s var(--ease),
+    border-color 0.14s var(--ease), color 0.14s var(--ease);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass,
+  button,
+  .el-button {
+    transition: none;
+  }
+  .glass:hover {
+    transform: none;
+  }
+}
